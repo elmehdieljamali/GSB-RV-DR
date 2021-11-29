@@ -24,6 +24,9 @@ import fr.gsb.rv.dr.modeles.ModeleGsbRv;
 import fr.gsb.rv.dr.technique.Session;
 import fr.gsb.rv.dr.technique.ConnexionBD;
 import fr.gsb.rv.dr.technique.ConnexionException;
+import fr.gsb.rv.dr.technique.VueConnexion;
+import javafx.scene.control.Dialog;
+import javafx.util.Pair;
 
 /**
  *
@@ -52,7 +55,7 @@ public class Appli extends Application {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        // launch(args);
+        //launch(args);
         
         /*
         try {
@@ -63,13 +66,15 @@ public class Appli extends Application {
         }
         */
         
-        /*
+        
         try {
             ModeleGsbRv.seConnecter("a131", "azerty") ;
         }
         catch( Exception e ) {
+            System.out.println(e);
+            System.out.println("fdfdffdf");
         }
-        */
+        
     }
     
     public void etatSession() {
@@ -123,6 +128,18 @@ public class Appli extends Application {
                 Session.ouvrir(v1) ;
                 primaryStage.setTitle(Session.getSession().getLeVisiteur().getNom() + Session.getSession().getLeVisiteur().getPrenom()) ;
                 */
+                VueConnexion vue = new VueConnexion() ;
+                Optional<Pair<String, String>> reponse = vue.showAndWait() ;
+                System.out.println(reponse.get().getKey());
+                System.out.println(reponse.get().getValue());
+                if( reponse.isPresent() ){
+                    try {
+                        ModeleGsbRv.seConnecter(reponse.get().getKey()  , reponse.get().getValue()) ;
+                    }
+                    catch( Exception e ) {
+                        System.out.println("Echec de l'authentification");
+                    }
+                }
             }
         );
         

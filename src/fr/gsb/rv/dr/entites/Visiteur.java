@@ -19,6 +19,10 @@ public class Visiteur {
         this.prenom = prenom ;
     }
     
+    public Visiteur (String matricule) {
+        this.matricule = matricule ;
+    }
+    
     public Visiteur () {
     }
     
