@@ -4,6 +4,7 @@
  */
 package fr.gsb.rv.dr.technique;
 
+import java.util.Optional;
 import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
@@ -19,11 +20,9 @@ import javafx.util.Pair;
  *
  * @author debian
  */
-public class VueConnexion extends Dialog {
-    String matricule ;
-    String mdp ;
+public class VueConnexion  {
+    Dialog<Pair<String, String>> dialog = new Dialog<>(); 
     public VueConnexion () {
-        Dialog<Pair<String, String>> dialog = new Dialog<>();   
         dialog.setTitle("Authentification") ;
         dialog.setHeaderText("Saisir vos données de connexion");
         
@@ -32,15 +31,13 @@ public class VueConnexion extends Dialog {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
-        TextField username = new TextField();
-        username.setPromptText("Matricule");
-        PasswordField password = new PasswordField();
-        password.setPromptText("Mot de passe");
+        TextField matricule = new TextField();
+        PasswordField mdp = new PasswordField();
 
-        grid.add(new Label("Matricule:"), 0, 0);
-        grid.add(username, 1, 0);
-        grid.add(new Label("Mot de passe:"), 0, 1);
-        grid.add(password, 1, 1);
+        grid.add(new Label("Matricule :"), 0, 0);
+        grid.add(matricule, 1, 0);
+        grid.add(new Label("Mot de passe :"), 0, 1);
+        grid.add(mdp, 1, 1);
 
         dialog.getDialogPane().setContent(grid);
 
@@ -48,15 +45,20 @@ public class VueConnexion extends Dialog {
         ButtonType cancelButtonType = new ButtonType("Annuler", ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, cancelButtonType);
 
-        setResultConverter (
+        dialog.setResultConverter (
             new Callback<ButtonType, Pair<String, String>>() {
                 public Pair<String, String> call( ButtonType typeBouton) {
                     if ( typeBouton == loginButtonType) {
-                        return new Pair<String, String>( matricule , mdp);
+                        return new Pair<String, String>( matricule.getText() , mdp.getText());
                     }
                     return null;
                 }
             }
         );
+    }
+    
+    public Optional showAndWait() {
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+        return result ;
     }
 }

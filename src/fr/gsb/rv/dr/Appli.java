@@ -24,8 +24,11 @@ import fr.gsb.rv.dr.modeles.ModeleGsbRv;
 import fr.gsb.rv.dr.technique.Session;
 import fr.gsb.rv.dr.technique.ConnexionBD;
 import fr.gsb.rv.dr.technique.ConnexionException;
+import fr.gsb.rv.dr.technique.PanneauAccueil;
+import fr.gsb.rv.dr.technique.PanneauPraticiens;
+import fr.gsb.rv.dr.technique.PanneauRapports;
 import fr.gsb.rv.dr.technique.VueConnexion;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.Pair;
 
 /**
@@ -35,8 +38,12 @@ import javafx.util.Pair;
 public class Appli extends Application {
 
     boolean session = false ;
-    Visiteur v1 ;
+    // Visiteur v1 ;
+    Visiteur visiteur ;
     
+    PanneauAccueil vueAccueil ;
+    PanneauRapports vueRapports ;
+    PanneauPraticiens vuePraticiens ;
     
     MenuBar barreMenus = new MenuBar() ;
         
@@ -55,7 +62,7 @@ public class Appli extends Application {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //launch(args);
+        launch(args);
         
         /*
         try {
@@ -66,15 +73,14 @@ public class Appli extends Application {
         }
         */
         
-        
+        /*
         try {
             ModeleGsbRv.seConnecter("a131", "azerty") ;
         }
         catch( Exception e ) {
             System.out.println(e);
-            System.out.println("fdfdffdf");
         }
-        
+        */
     }
     
     public void etatSession() {
@@ -121,8 +127,6 @@ public class Appli extends Application {
         );
         
         itemSeConnecter.setOnAction( actionEvent -> {
-                session = true ;
-                etatSession();
                 /*
                 v1 = new Visiteur ("OB001", "BOUAICHI", "Oumayma") ;
                 Session.ouvrir(v1) ;
@@ -130,14 +134,25 @@ public class Appli extends Application {
                 */
                 VueConnexion vue = new VueConnexion() ;
                 Optional<Pair<String, String>> reponse = vue.showAndWait() ;
-                System.out.println(reponse.get().getKey());
-                System.out.println(reponse.get().getValue());
                 if( reponse.isPresent() ){
                     try {
-                        ModeleGsbRv.seConnecter(reponse.get().getKey()  , reponse.get().getValue()) ;
+                        visiteur = ModeleGsbRv.seConnecter(reponse.get().getKey()  , reponse.get().getValue()) ;
+                        if( visiteur != null ) {
+                            session = true ;
+                            etatSession();
+                            primaryStage.setTitle(visiteur.getNom() + " " + visiteur.getPrenom()) ;
+                        }
+                        else{
+                            Alert alert = new Alert(AlertType.ERROR);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText("Echec de l'authentification");
+                            alert.setContentText("Matricule et/ou mot de passe incoorrect. Réessayer");
+
+                            alert.showAndWait();
+                        }
                     }
                     catch( Exception e ) {
-                        System.out.println("Echec de l'authentification");
+                        System.out.println(e);
                     }
                 }
             }
@@ -146,7 +161,7 @@ public class Appli extends Application {
         itemSeDeconnecter.setOnAction( actionEvent -> {
                 session = false ;
                 etatSession();
-                // primaryStage.setTitle("GSB-RV-DR");
+                primaryStage.setTitle("GSB-RV-DR");
             }
         );
         
