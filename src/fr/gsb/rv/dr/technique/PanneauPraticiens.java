@@ -4,10 +4,20 @@
  */
 package fr.gsb.rv.dr.technique;
 
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
 /**
  *
  * @author debian
  */
-public class PanneauPraticiens {
+public class PanneauPraticiens extends VBox {
     
+    public PanneauPraticiens () {
+        VBox vbox = new VBox();
+        Label label = new Label("Praticiens");
+        vbox.setStyle("-fx-background-color: white");
+        vbox.getChildren().add(label);
+        this.getChildren().add(vbox);
+    }
 }

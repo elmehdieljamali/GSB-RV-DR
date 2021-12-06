@@ -28,7 +28,10 @@ import fr.gsb.rv.dr.technique.PanneauAccueil;
 import fr.gsb.rv.dr.technique.PanneauPraticiens;
 import fr.gsb.rv.dr.technique.PanneauRapports;
 import fr.gsb.rv.dr.technique.VueConnexion;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 /**
@@ -41,7 +44,7 @@ public class Appli extends Application {
     // Visiteur v1 ;
     Visiteur visiteur ;
     
-    PanneauAccueil vueAccueil ;
+    PanneauAccueil vueAccueil  ;
     PanneauRapports vueRapports ;
     PanneauPraticiens vuePraticiens ;
     
@@ -111,6 +114,7 @@ public class Appli extends Application {
         menuPraticiens.getItems().add( itemHesitants ) ;
         barreMenus.getMenus().add( menuPraticiens ) ;
         
+        
         itemQuitter.setOnAction( actionEvent -> {
                 Alert alertQuitter = new Alert( Alert.AlertType.CONFIRMATION );
                 alertQuitter.setTitle("Quitter");
@@ -162,17 +166,20 @@ public class Appli extends Application {
                 session = false ;
                 etatSession();
                 primaryStage.setTitle("GSB-RV-DR");
+                vueAccueil.toFront();
             }
         );
         
         itemConsulter.setOnAction( actionEvent -> {
                 System.out.println(itemConsulter);
+                vueRapports.toFront();
                 // System.out.println("[Rapports]" + Session.getSession().getLeVisiteur().getPrenom() + " " + Session.getSession().getLeVisiteur().getNom());
             }
         );
         
         itemHesitants.setOnAction( actionEvent -> {
                 System.out.println(itemHesitants);
+                vuePraticiens.toFront();
                 // System.out.println("[Praticiens]" + Session.getSession().getLeVisiteur().getPrenom() + " " + Session.getSession().getLeVisiteur().getNom());
             }
         );
@@ -188,6 +195,18 @@ public class Appli extends Application {
         
         BorderPane root = new BorderPane() ;
         root.setTop( barreMenus ) ;
+        
+        StackPane stackPane = new StackPane() ;
+        vueAccueil = new PanneauAccueil() ;
+        vueRapports = new PanneauRapports() ;
+        vuePraticiens = new PanneauPraticiens() ;
+        stackPane.getChildren().add(vuePraticiens);
+        stackPane.getChildren().add(vueRapports);
+        stackPane.getChildren().add(vueAccueil);
+        vueAccueil.toFront();
+        
+        root.setCenter(stackPane);
+        
         
         Scene scene = new Scene(root, 300, 250);
         
