@@ -1,11 +1,14 @@
 package fr.gsb.rv.dr.modeles;
 
+import fr.gsb.rv.dr.entites.Praticien;
 import fr.gsb.rv.dr.entites.Visiteur;
 import fr.gsb.rv.dr.technique.ConnexionBD;
 import fr.gsb.rv.dr.technique.ConnexionException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModeleGsbRv {
     
@@ -44,5 +47,41 @@ public class ModeleGsbRv {
         catch( Exception e ){
             return null ;
         } 
+    }
+    
+    public static List getPraticiensHesitants () throws ConnexionException{
+        
+        Connection connexion = ConnexionBD.getConnexion() ;
+        
+        String requetePraticiens = "SELECT * "
+            + "FROM Praticien as p "
+            + "INNER JOIN RapportVisite as r "
+            + "ON p.pra_num = r.pra_num "
+            + "WHERE r.rap_coefconfiance < 5 ;" ;
+        List<Praticien> praticiens = new ArrayList<>();
+        
+        try {
+            PreparedStatement requetePreparee = (PreparedStatement) connexion.prepareStatement( requetePraticiens ) ;
+            ResultSet resultat = requetePreparee.executeQuery() ;
+            while( resultat.next() ){
+                Praticien unPraticien = new Praticien (
+                        resultat.getInt("pra_num"),
+                        resultat.getString("pra_nom"),
+                        resultat.getString("pra_prenom"),
+                        resultat.getString("pra_adresse"),
+                        resultat.getInt("pra_cp"),
+                        resultat.getString("pra_ville"),
+                        resultat.getDouble("pra_coefNotoriete"),
+                        resultat.getDate("rap_date_visite").toLocalDate(),
+                        resultat.getInt("rap_coeffconfiance")
+                );
+                praticiens.add(unPraticien);
+            }
+            requetePreparee.close() ;
+        }
+        catch( Exception e ){
+            return null ;
+        } 
+        return praticiens ;
     }
 }

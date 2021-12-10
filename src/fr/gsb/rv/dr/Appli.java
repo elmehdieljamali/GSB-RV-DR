@@ -4,6 +4,7 @@
  */
 package fr.gsb.rv.dr;
 
+import fr.gsb.rv.dr.entites.Praticien;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -28,10 +29,9 @@ import fr.gsb.rv.dr.technique.PanneauAccueil;
 import fr.gsb.rv.dr.technique.PanneauPraticiens;
 import fr.gsb.rv.dr.technique.PanneauRapports;
 import fr.gsb.rv.dr.technique.VueConnexion;
-import javafx.geometry.Pos;
+import java.util.List;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 /**
@@ -63,9 +63,9 @@ public class Appli extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ConnexionException {
         // TODO code application logic here
-        launch(args);
+        // launch(args);
         
         /*
         try {
@@ -84,6 +84,12 @@ public class Appli extends Application {
             System.out.println(e);
         }
         */
+        
+        List<Praticien> praticiens = ModeleGsbRv.getPraticiensHesitants() ;
+        
+        for( Praticien unPraticien : praticiens ){
+            System.out.println(unPraticien);
+        }
     }
     
     public void etatSession() {
