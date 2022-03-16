@@ -53,11 +53,12 @@ public class ModeleGsbRv {
         
         Connection connexion = ConnexionBD.getConnexion() ;
         
-        String requetePraticiens = "SELECT * "
-            + "FROM Praticien as p "
-            + "INNER JOIN RapportVisite as r "
-            + "ON p.pra_num = r.pra_num "
-            + "WHERE r.rap_coefconfiance < 5 ;" ;
+        String requetePraticiens = "SELECT vis_matricule, pra_coefnotoriete, pra_ville, R.pra_num, pra_nom, rap_num, rap_date_visite, rap_bilan, rap_coeffconfiance, rap_date_saisie, rap_motif,pra_nom, pra_prenom, R.pra_num "
+                + "FROM RapportVisite as R "
+                + "INNER JOIN Praticien as P "
+                + "ON R.pra_num = P.pra_num "
+                + "WHERE rap_date_visite in( SELECT MAX(rap_date_visite) FROM RapportVisite GROUP BYs pra_num) "
+                + "AND rap_coeffconfiance < 5 " ;
         List<Praticien> praticiens = new ArrayList<>();
         
         try {

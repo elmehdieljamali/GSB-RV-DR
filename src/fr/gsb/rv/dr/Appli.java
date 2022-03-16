@@ -29,6 +29,8 @@ import fr.gsb.rv.dr.technique.PanneauAccueil;
 import fr.gsb.rv.dr.technique.PanneauPraticiens;
 import fr.gsb.rv.dr.technique.PanneauRapports;
 import fr.gsb.rv.dr.technique.VueConnexion;
+import fr.gsb.rv.dr.utilitaires.ComparateurCoefConfiance;
+import java.util.Collections;
 import java.util.List;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
@@ -65,7 +67,7 @@ public class Appli extends Application {
      */
     public static void main(String[] args) throws ConnexionException {
         // TODO code application logic here
-        // launch(args);
+        launch(args);
         
         /*
         try {
@@ -86,6 +88,12 @@ public class Appli extends Application {
         */
         
         List<Praticien> praticiens = ModeleGsbRv.getPraticiensHesitants() ;
+        
+        /* for( Praticien unPraticien : praticiens ){
+            System.out.println(unPraticien);
+        } */
+        
+        Collections.sort( praticiens , new ComparateurCoefConfiance() ) ;
         
         for( Praticien unPraticien : praticiens ){
             System.out.println(unPraticien);
