@@ -30,6 +30,8 @@ import fr.gsb.rv.dr.technique.PanneauPraticiens;
 import fr.gsb.rv.dr.technique.PanneauRapports;
 import fr.gsb.rv.dr.technique.VueConnexion;
 import fr.gsb.rv.dr.utilitaires.ComparateurCoefConfiance;
+import fr.gsb.rv.dr.utilitaires.ComparateurCoefNotoriete;
+import fr.gsb.rv.dr.utilitaires.ComparateurDateVisite;
 import java.util.Collections;
 import java.util.List;
 import javafx.scene.control.Alert.AlertType;
@@ -69,14 +71,15 @@ public class Appli extends Application {
         // TODO code application logic here
         launch(args);
         
-        /*
-        try {
+        
+        /*try {
             ConnexionBD.getConnexion();
+            System.out.println("dsfdsffds");
         }
         catch( Exception e ) {
             System.out.println(e);
-        }
-        */
+        }*/
+        
         
         /*
         try {
@@ -91,13 +94,25 @@ public class Appli extends Application {
         
         /* for( Praticien unPraticien : praticiens ){
             System.out.println(unPraticien);
-        } */
+        }
         
         Collections.sort( praticiens , new ComparateurCoefConfiance() ) ;
         
         for( Praticien unPraticien : praticiens ){
             System.out.println(unPraticien);
         }
+        
+        Collections.sort( praticiens , new ComparateurCoefNotoriete().reversed() ) ;
+        
+        for( Praticien unPraticien : praticiens ){
+            System.out.println(unPraticien);
+        } */
+        
+        Collections.sort( praticiens , new ComparateurDateVisite().reversed() ) ;
+        
+        for( Praticien unPraticien : praticiens ){
+            System.out.println(unPraticien);
+        } 
     }
     
     public void etatSession() {
@@ -185,14 +200,14 @@ public class Appli extends Application {
         );
         
         itemConsulter.setOnAction( actionEvent -> {
-                System.out.println(itemConsulter);
+                // System.out.println(itemConsulter);
                 vueRapports.toFront();
                 // System.out.println("[Rapports]" + Session.getSession().getLeVisiteur().getPrenom() + " " + Session.getSession().getLeVisiteur().getNom());
             }
         );
         
         itemHesitants.setOnAction( actionEvent -> {
-                System.out.println(itemHesitants);
+                // System.out.println(itemHesitants);
                 vuePraticiens.toFront();
                 // System.out.println("[Praticiens]" + Session.getSession().getLeVisiteur().getPrenom() + " " + Session.getSession().getLeVisiteur().getNom());
             }

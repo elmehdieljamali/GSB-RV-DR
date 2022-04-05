@@ -9,6 +9,7 @@
             <file>file:/home/debian/NetBeansProjects/GSB-RV-DR/src/fr/gsb/rv/dr/modeles/ModeleGsbRv.java</file>
             <file>file:/home/debian/NetBeansProjects/GSB-RV-DR/src/fr/gsb/rv/dr/utilitaires/ComparateurCoefNotoriete.java</file>
             <file>file:/home/debian/NetBeansProjects/GSB-RV-DR/src/fr/gsb/rv/dr/entites/Praticien.java</file>
+            <file>file:/home/debian/NetBeansProjects/GSB-RV-DR/src/fr/gsb/rv/dr/technique/ConnexionBD.java</file>
         </group>
     </open-files>
 </project-private>

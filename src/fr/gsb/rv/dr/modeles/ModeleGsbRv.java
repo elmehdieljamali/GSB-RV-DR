@@ -51,14 +51,16 @@ public class ModeleGsbRv {
     
     public static List getPraticiensHesitants () throws ConnexionException{
         
+        
         Connection connexion = ConnexionBD.getConnexion() ;
         
-        String requetePraticiens = "SELECT vis_matricule, pra_coefnotoriete, pra_ville, R.pra_num, pra_nom, rap_num, rap_date_visite, rap_bilan, rap_coeffconfiance, rap_date_saisie, rap_motif,pra_nom, pra_prenom, R.pra_num "
+        String requetePraticiens = "SELECT vis_matricule, pra_coefnotoriete, pra_ville, R.pra_num, pra_nom, pra_prenom, pra_adresse, pra_cp, rap_num, rap_date_visite, rap_bilan, rap_coeffconfiance, rap_date_saisie, rap_motif "
                 + "FROM RapportVisite as R "
                 + "INNER JOIN Praticien as P "
                 + "ON R.pra_num = P.pra_num "
-                + "WHERE rap_date_visite in( SELECT MAX(rap_date_visite) FROM RapportVisite GROUP BYs pra_num) "
+                + "WHERE rap_date_visite in( SELECT MAX(rap_date_visite) FROM RapportVisite GROUP BY pra_num) "
                 + "AND rap_coeffconfiance < 5 " ;
+        
         List<Praticien> praticiens = new ArrayList<>();
         
         try {
@@ -66,13 +68,13 @@ public class ModeleGsbRv {
             ResultSet resultat = requetePreparee.executeQuery() ;
             while( resultat.next() ){
                 Praticien unPraticien = new Praticien (
-                        resultat.getInt("pra_num"),
+                        resultat.getInt("R.pra_num"),
                         resultat.getString("pra_nom"),
                         resultat.getString("pra_prenom"),
                         resultat.getString("pra_adresse"),
                         resultat.getInt("pra_cp"),
                         resultat.getString("pra_ville"),
-                        resultat.getDouble("pra_coefNotoriete"),
+                        resultat.getDouble("pra_coefnotoriete"),
                         resultat.getDate("rap_date_visite").toLocalDate(),
                         resultat.getInt("rap_coeffconfiance")
                 );
@@ -82,7 +84,7 @@ public class ModeleGsbRv {
         }
         catch( Exception e ){
             return null ;
-        } 
+        }
         return praticiens ;
     }
 }
