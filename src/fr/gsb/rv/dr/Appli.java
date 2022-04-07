@@ -106,13 +106,13 @@ public class Appli extends Application {
         
         for( Praticien unPraticien : praticiens ){
             System.out.println(unPraticien);
-        } */
+        } 
         
         Collections.sort( praticiens , new ComparateurDateVisite().reversed() ) ;
         
         for( Praticien unPraticien : praticiens ){
             System.out.println(unPraticien);
-        } 
+        } */
     }
     
     public void etatSession() {
