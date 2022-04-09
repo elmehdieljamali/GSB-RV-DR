@@ -16,6 +16,6 @@ Le laboratoire Galaxy Swiss Bourdin (GSB) est issu de la fusion entre le géant 
 | 4- Le délégué régional saisit son mot de passe. |
 | 5- Le système contrôle le matricule et le mot de passe. |
 | 6- Le système active l'interface utilisateur |
-| **Scénario alternatif :** Le matricule est inconnu ou le mot de passe est incorrect <br>
-1. Le système informe le délégué régional de l'échec de l'authentification.
-2. Le cas d'utilisation reprend à l'étape 1 du scénario nominal. |
+| **Scénario alternatif :** Le matricule est inconnu ou le mot de passe est incorrect |
+| 1. Le système informe le délégué régional de l'échec de l'authentification. |
+| 2. Le cas d'utilisation reprend à l'étape 1 du scénario nominal. |
