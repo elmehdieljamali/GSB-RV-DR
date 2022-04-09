@@ -4,6 +4,7 @@ Application d'enregistrement et de suivi des rapports de visite
 Le laboratoire Galaxy Swiss Bourdin (GSB) est issu de la fusion entre le géant américain Galaxy (spécialisé dans le secteur des maladies virales dont le SIDA et les hépatites) et le conglomérat européen Swiss Bourdin (travaillant sur des médicaments plus conventionnels).
 ## Description des cas d'utilisation
 | **Nom du cas d'utilisation :** S'authentifier |
+|:----------|
 | **Acteur déclencheur :** Délégué régional |
 | Le cas commence quand le délégué régional demande à se connecter. |
 | **Pré-conditions :** néant |
