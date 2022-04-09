@@ -1,7 +1,8 @@
 # GSB-RV-DR
-Application d'enregistrement et de suivi des rapports de visite
+Application d'enregistrement et de suivi des rapports de visite.
 ## Contexte
-Le laboratoire Galaxy Swiss Bourdin (GSB) est issu de la fusion entre le géant américain Galaxy (spécialisé dans le secteur des maladies virales dont le SIDA et les hépatites) et le conglomérat européen Swiss Bourdin (travaillant sur des médicaments plus conventionnels).
+Le laboratoire Galaxy Swiss Bourdin (GSB) est issu de la fusion entre le géant américain Galaxy (spécialisé dans le secteur des maladies virales dont le SIDA et les hépatites) et le conglomérat européen Swiss Bourdin (travaillant sur des médicaments plus conventionnels). <br>
+L'application permet de centraliser les rapports de visite. En fournissant une description des produits du laboratoire, les coordonnées précises des praticiens et des informations détaillées les concernant. Elle sert aussi à la mise en relation de la hiérarchie de la force commerciale, des visiteurs aux responsables de secteur en passant par les délégués régionaux.
 ## Modélisation de la base de données
 ![Capture](https://user-images.githubusercontent.com/85114414/162581569-592f4144-f56d-4862-a1bc-10cb4aef8f68.PNG)
 ## Description des cas d'utilisation
