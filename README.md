@@ -25,7 +25,7 @@ L'application permet de centraliser les rapports de visite. En fournissant une d
 | 1. Le système informe le délégué régional de l'échec de l'authentification. |
 | 2. Le cas d'utilisation reprend à l'étape 1 du scénario nominal.
 **Consulter la liste des praticiens hésitants**
-| **Nom du cas d'utilisation :** Consulter la liste des praticiens hésitants |
+**Nom du cas d'utilisation :** Consulter la liste des praticiens hésitants |
 |:----------|
 | **Acteur déclencheur :** Délégué régional |
 | Le cas commence quand le délégué régional demande à consulter la liste des praticiens hésitants. |
