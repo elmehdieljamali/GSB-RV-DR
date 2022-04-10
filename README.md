@@ -6,6 +6,7 @@ L'application permet de centraliser les rapports de visite. En fournissant une d
 ## Modélisation de la base de données
 ![Capture](https://user-images.githubusercontent.com/85114414/162581569-592f4144-f56d-4862-a1bc-10cb4aef8f68.PNG)
 ## Description des cas d'utilisation
+**S'authentifier**
 | **Nom du cas d'utilisation :** S'authentifier |
 |:----------|
 | **Acteur déclencheur :** Délégué régional |
@@ -22,3 +23,20 @@ L'application permet de centraliser les rapports de visite. En fournissant une d
 | **Scénario alternatif :** Le matricule est inconnu ou le mot de passe est incorrect |
 | 1. Le système informe le délégué régional de l'échec de l'authentification. |
 | 2. Le cas d'utilisation reprend à l'étape 1 du scénario nominal. |
+**Consulter la liste des praticiens hésitants**
+| **Nom du cas d'utilisation :** Consulter la liste des praticiens hésitants |
+|:----------|
+| **Acteur déclencheur :** Délégué régional |
+| Le cas commence quand le délégué régional demande à consulter la liste des praticiens hésitants. |
+| **Pré-conditions :** Le délégué régional est authentifié |
+| **Post-conditions :** néant |
+| **Scénario nominal :** |
+| 1- Le système affiche les critères de tri. |
+| 2- Le délégué régional sélectionne le critére de tri. |
+| 3- Le système affiche la liste des praticiens hésitants triée |
+| **Contraintes :** |
+| Les critères de tri sont : |
+| - Le coefficient de confiance (affichage dans l'ordre croissant) ; |
+| - Le temps écoulé depuis la dernière visite (affichage dans l'ordre chronologique inverse) ; |
+| - Le coefficient de notoriété du praticien (affichage dans l'ordre décroissant). |
+| La liste des praticiens hésitants fait apparaître le nom et la ville du praticien . |
