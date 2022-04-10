@@ -23,7 +23,7 @@ L'application permet de centraliser les rapports de visite. En fournissant une d
 | 6- Le système active l'interface utilisateur |
 | **Scénario alternatif :** Le matricule est inconnu ou le mot de passe est incorrect |
 | 1. Le système informe le délégué régional de l'échec de l'authentification. |
-| 2. Le cas d'utilisation reprend à l'étape 1 du scénario nominal. |
+| 2. Le cas d'utilisation reprend à l'étape 1 du scénario nominal.
 **Consulter la liste des praticiens hésitants**
 | **Nom du cas d'utilisation :** Consulter la liste des praticiens hésitants |
 |:----------|
