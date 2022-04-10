@@ -12,6 +12,7 @@ import fr.gsb.rv.dr.utilitaires.ComparateurDateVisite;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -90,10 +91,43 @@ public class PanneauPraticiens extends VBox {
         tabPraticiens.getColumns().add( colVille ) ;
         vbox.getChildren().add(tabPraticiens);
         
+        rbCoefConfiance.setOnAction( ( ActionEvent event ) -> {
+                this.setCritereTri(CRITERE_COEF_CONFIANCE);
+                try {
+                    this.rafraichir();
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        );
+        
+        rbCoefNotoriete.setOnAction( ( ActionEvent event ) -> {
+                this.setCritereTri(CRITERE_COEF_NOTOTRIETE);
+                try {
+                    this.rafraichir();
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        );
+        
+        rbDateVisite.setOnAction( ( ActionEvent event ) -> {
+                this.setCritereTri(CRITERE_DATE_VISITE);
+                try {
+                    this.rafraichir();
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        );
+        
         this.getChildren().add(vbox);
     }
     
-    public void rafrachir () throws ConnexionException {
+    public void rafraichir () throws ConnexionException {
         praticiens = ModeleGsbRv.getPraticiensHesitants() ;
         observableListPraticiens = FXCollections.observableArrayList(praticiens);
         
